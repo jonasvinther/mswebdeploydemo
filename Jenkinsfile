@@ -22,7 +22,7 @@ node("windows") {
 
     stage("Deploy") {
         withCredentials([
-            string(credentialsId: 'IISURL', variable: 'IISURL'), 
+            string(credentialsId: 'IISURLTEST', variable: 'IISURL'), 
             string(credentialsId: 'IISUSER', variable: 'IISUSER'), 
             string(credentialsId: 'IISPWD', variable: 'IISPWD')]) {
                 powershell(script:". '${env.WORKSPACE}/build_scripts/deploy.ps1' ${project_path} ${IISURL} ${IISUSER} ${IISPWD}")
