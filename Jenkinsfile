@@ -23,8 +23,6 @@ node("windows") {
             string(credentialsId: 'IISURL', variable: 'IISURL'), 
             string(credentialsId: 'IISUSER', variable: 'IISUSER'), 
             string(credentialsId: 'IISPWD', variable: 'IISPWD')]) {
-                doDeploy(IISURL, IISUSER, IISPWD, workspacePath)
-
                 bat """ \
                     ${project_path}/obj/Release/Package/WebApplication1.deploy.cmd \
                     /Y \"-setParam:name=\'IIS Web Application Name\',value=\'demo\'\" \
