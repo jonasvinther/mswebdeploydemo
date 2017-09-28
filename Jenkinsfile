@@ -22,17 +22,15 @@ node("windows") {
 
     stage("Deploy") {
         withCredentials([
-            string(credentialsId: 'IISURLTEST', variable: 'IISURL'), 
+            string(credentialsId: 'IISURL', variable: 'IISURL'), 
             string(credentialsId: 'IISUSER', variable: 'IISUSER'), 
             string(credentialsId: 'IISPWD', variable: 'IISPWD')]) {
-                def test = "url: " + IISURL
-                echo test
-                powershell(script:". '${env.WORKSPACE}/build_scripts/deploy.ps1' ${project_path} ${IISURL} ${IISUSER} ${IISPWD}")
-                // bat """ \
-                //     ${project_path}/obj/Release/Package/WebApplication1.deploy.cmd \
-                //     /Y \"-setParam:name=\'IIS Web Application Name\',value=\'test\'\" \
-                //     \"/M:%IISURL%\" -allowUntrusted /U:%IISUSER% /P:%IISPWD% /A:Basic \
-                // """
+                // powershell(script:". '${env.WORKSPACE}/build_scripts/deploy.ps1' ${project_path} ${IISURL} ${IISUSER} ${IISPWD}")
+                bat """ \
+                    ${project_path}/obj/Release/Package/WebApplication1.deploy.cmd \
+                    /Y \"-setParam:name=\'IIS Web Application Name\',value=\'test\'\" \
+                    \"/M:%IISURL%\" -allowUntrusted /U:%IISUSER% /P:%IISPWD% /A:Basic \
+                """
         }
     }
 
