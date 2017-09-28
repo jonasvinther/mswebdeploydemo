@@ -11,7 +11,7 @@ node("windows") {
     stage("Build") {
         powershell(script:"c:/Jenkins/nuget.exe restore ${workspacePath}/WebApplication1.sln", returnStdout:true)
 
-        powershell(script:". '${env.WORKSPACE}/build_scripts/build.ps1' ${env.WORKSPACE}")
+        powershell(script:". '${env.WORKSPACE}/build_scripts/build.ps1' ${project_path}")
 
         // bat """ \
         //     \"C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin/amd64/MSBuild.exe\" \
