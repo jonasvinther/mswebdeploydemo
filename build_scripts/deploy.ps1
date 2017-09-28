@@ -13,5 +13,5 @@ param(
 )
 
 & "$project_path/obj/Release/Package/WebApplication1.deploy.cmd" `
-/Y "-setParam:name='IIS Web Application Name',value='test'" `
+/Y -setParam:"name='IIS Web Application Name',value='test'" `
 /M:"$IISURL" -allowUntrusted /U:"$IISUSER" /P:"$IISPWD" /A:"Basic"
