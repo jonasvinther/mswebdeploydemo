@@ -11,11 +11,13 @@ node("windows") {
     stage("Build") {
         powershell(script:"c:/Jenkins/nuget.exe restore ${workspacePath}/WebApplication1.sln", returnStdout:true)
 
-        bat """ \
-            \"C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin/amd64/MSBuild.exe\" \
-            ${project_path}/WebApplication1.csproj \
-            /v:detailed /t:ReBuild;Package /p:Configuration=Release \
-        """
+        powershell(script:". '${env.WORKSPACE}/build_scripts/build.ps1' ${env.WORKSPACE}")
+
+        // bat """ \
+        //     \"C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin/amd64/MSBuild.exe\" \
+        //     ${project_path}/WebApplication1.csproj \
+        //     /v:detailed /t:ReBuild;Package /p:Configuration=Release \
+        // """
     }
 
     stage("Deploy") {
