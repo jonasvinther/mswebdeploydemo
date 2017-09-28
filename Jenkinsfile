@@ -25,7 +25,7 @@ node("windows") {
             bat """ \
                 ${env.WORKSPACE}/WebApplication1/obj/Release/Package/WebApplication1.deploy.cmd \
                 /Y \"-setParam:name=\'IIS Web Application Name\',value=\'test\'\" \
-                \"/M:%IISURL%\" -allowUntrusted /U:%IISUSER% /P:%IISPWD% /A:Basic \
+                \"/M:%IISURL%\" /U:%IISUSER% /P:%IISPWD% /A:Basic -allowUntrusted \
             """
         }
     }
