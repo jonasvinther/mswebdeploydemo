@@ -1,8 +1,8 @@
 node("windows") {
 
     def build_scripts_path = pwd() + "/build_scripts"
-    def project_path = pwd() + "/project"
-    def workspacePath = "C:/Jenkins/workspace/MSWebdeploydemo/project"
+    def project_path = pwd() + "/WebApplication1"
+    def workspacePath = pwd()
 
     stage("Preparation") {
         checkout scm
@@ -13,7 +13,7 @@ node("windows") {
 
         bat """ \
             \"C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin/amd64/MSBuild.exe\" \
-            ${workspacePath}/WebApplication1.csproj \
+            ${project_path}/WebApplication1.csproj \
             /v:detailed /t:ReBuild;Package /p:Configuration=Release \
         """
     }
@@ -26,7 +26,7 @@ node("windows") {
                 doDeploy(IISURL, IISUSER, IISPWD, workspacePath)
 
                 bat """ \
-                    ${workspacePath}/obj/Release/Package/WebApplication1.deploy.cmd \
+                    ${project_path}/obj/Release/Package/WebApplication1.deploy.cmd \
                     /Y \"-setParam:name=\'IIS Web Application Name\',value=\'demo\'\" \
                     \"/M:%IISURL%\" -allowUntrusted /U:%IISUSER% /P:%IISPWD% /A:Basic \
                 """
