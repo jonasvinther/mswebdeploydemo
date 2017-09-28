@@ -1,8 +1,8 @@
 node("windows") {
 
-    def build_scripts_path = pwd() + "/build_scripts"
-    def project_path = pwd() + "/WebApplication1"
-    def workspacePath = pwd()
+    def build_scripts_path = env.WORKSPACE + "/build_scripts"
+    def project_path = env.WORKSPACE + "/WebApplication1"
+    def workspacePath = env.WORKSPACE
 
     stage("Preparation") {
         checkout scm
