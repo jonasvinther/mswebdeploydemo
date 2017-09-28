@@ -25,7 +25,7 @@ node("windows") {
             string(credentialsId: 'IISPWD', variable: 'IISPWD')]) {
                 bat """ \
                     ${project_path}/obj/Release/Package/WebApplication1.deploy.cmd \
-                    /Y \"-setParam:name=\'IIS Web Application Name\',value=\'demo\'\" \
+                    /Y \"-setParam:name=\'IIS Web Application Name\',value=\'test\'\" \
                     \"/M:%IISURL%\" -allowUntrusted /U:%IISUSER% /P:%IISPWD% /A:Basic \
                 """
         }
