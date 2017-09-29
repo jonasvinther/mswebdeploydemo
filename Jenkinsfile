@@ -5,14 +5,14 @@ node("windows") {
     }
 
     stage('Dependencies') {
-        powershell(script:"c:/Jenkins/nuget.exe restore ${env.WORKSPACE}/WebApplication1.sln", returnStdout:true)
+        powershell(script:"c:/Jenkins/nuget.exe restore ${env.WORKSPACE}/WebApplication1.sln")
     }
 
     stage("Build") {
         bat """ \
             \"C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin/amd64/MSBuild.exe\" \
             ${env.WORKSPACE}/WebApplication1/WebApplication1.csproj \
-            /v:detailed /t:ReBuild;Package /p:Configuration=Release \
+            /v:detailed /t:Build;Package /p:Configuration=Release \
         """
     }
 
